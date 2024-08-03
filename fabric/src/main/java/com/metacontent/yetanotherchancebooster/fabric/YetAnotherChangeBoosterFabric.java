@@ -1,17 +1,19 @@
 package com.metacontent.yetanotherchancebooster.fabric;
 
+import com.metacontent.yetanotherchancebooster.effect.ShinyBoostEffect;
 import net.fabricmc.api.ModInitializer;
 
 import com.metacontent.yetanotherchancebooster.YetAnotherChanceBooster;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.Registry;
+import net.minecraft.util.Identifier;
 
 public final class YetAnotherChangeBoosterFabric implements ModInitializer {
     @Override
     public void onInitialize() {
-        // This code runs as soon as Minecraft is in a mod-load-ready state.
-        // However, some things (like resources) may still be uninitialized.
-        // Proceed with mild caution.
-
-        // Run our common setup.
         YetAnotherChanceBooster.init();
+
+        Registry.register(Registries.STATUS_EFFECT, new Identifier(YetAnotherChanceBooster.MOD_ID, "shiny_boost_effect"),
+                new ShinyBoostEffect());
     }
 }
