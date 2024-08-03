@@ -30,11 +30,20 @@ configurations {
     }
 }
 
+repositories {
+    maven {
+        url "https://thedarkcolour.github.io/KotlinForForge/"
+    }
+}
+
 dependencies {
     forge "net.minecraftforge:forge:$rootProject.forge_version"
+    implementation "thedarkcolour:kotlinforforge:${rootProject.property("kotlinforforge_version")}"
 
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionForge')
+
+    modImplementation "com.cobblemon:forge:${rootProject.property("cobblemon_version")}"
 }
 
 processResources {
