@@ -11,9 +11,9 @@ import net.minecraft.util.Identifier;
 public final class YetAnotherChangeBoosterFabric implements ModInitializer {
     @Override
     public void onInitialize() {
-        YetAnotherChanceBooster.init();
-
         Registry.register(Registries.STATUS_EFFECT, new Identifier(YetAnotherChanceBooster.MOD_ID, "shiny_boost_effect"),
-                new ShinyBoostEffect());
+                YetAnotherChanceBooster.SHINY_BOOST_EFFECT);
+
+        YetAnotherChanceBooster.init();
     }
 }
