@@ -16,10 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.metacontent.yetanotherchancebooster.fabric.ExampleModFabric"
+      "com.metacontent.yetanotherchancebooster.fabric.YetAnotherChangeBoosterFabric"
     ],
     "client": [
-      "com.metacontent.yetanotherchancebooster.fabric.client.ExampleModFabricClient"
+      "com.metacontent.yetanotherchancebooster.fabric.client.YetAnotherChangeBoosterFabricClient"
     ]
   },
   "mixins": [
