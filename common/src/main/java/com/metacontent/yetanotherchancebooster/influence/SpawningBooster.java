@@ -7,15 +7,15 @@ import com.cobblemon.mod.common.api.spawning.detail.SpawnAction;
 import com.cobblemon.mod.common.api.spawning.detail.SpawnDetail;
 import com.cobblemon.mod.common.api.spawning.influence.SpawningInfluence;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import org.jetbrains.annotations.NotNull;
 
 public abstract class SpawningBooster implements SpawningInfluence {
-    protected final PlayerEntity player;
+    protected final ServerPlayerEntity player;
 
-    public SpawningBooster(PlayerEntity player) {
+    public SpawningBooster(ServerPlayerEntity player) {
         this.player = player;
     }
 
