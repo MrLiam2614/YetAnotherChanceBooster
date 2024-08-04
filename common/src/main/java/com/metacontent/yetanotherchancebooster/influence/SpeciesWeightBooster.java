@@ -18,7 +18,7 @@ public class SpeciesWeightBooster extends SpawningBooster {
             String species = pokemonSpawnDetail.getPokemon().getSpecies();
             if (species == null) return weight;
 
-            float amplifier = ((BoosterUser) player).yacb$getBoostManager().getWeightAmplifier(species);
+            float amplifier = ((BoosterUser) player).yacb$getBoostManager().getSpeciesWeightAmplifier(species);
             return weight * amplifier;
         }
         return super.affectWeight(spawnDetail, spawningContext, weight);

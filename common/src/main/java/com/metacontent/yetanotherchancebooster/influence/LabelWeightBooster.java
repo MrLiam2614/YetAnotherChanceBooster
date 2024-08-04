@@ -21,7 +21,7 @@ public class LabelWeightBooster extends SpawningBooster {
             Set<String> labels = new HashSet<>(pokemonSpawnDetail.getLabels());
             if (labels.isEmpty()) return weight;
 
-            float amplifier = ((BoosterUser) player).yacb$getBoostManager().getWeightAmplifier(labels);
+            float amplifier = ((BoosterUser) player).yacb$getBoostManager().getLabelWeightAmplifier(labels);
             return weight * amplifier;
         }
         return super.affectWeight(spawnDetail, spawningContext, weight);

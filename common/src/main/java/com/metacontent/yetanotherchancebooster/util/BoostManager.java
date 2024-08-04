@@ -51,7 +51,7 @@ public class BoostManager {
         return shinyBoost.getAmplifier();
     }
 
-    public float getWeightAmplifier(String species) {
+    public float getSpeciesWeightAmplifier(String species) {
         float amplifier = 0;
         Boost weightBoost = getBoost(species);
         if (weightBoost != null) {
@@ -60,7 +60,7 @@ public class BoostManager {
         return amplifier;
     }
 
-    public float getWeightAmplifier(Set<String> labels) {
+    public float getLabelWeightAmplifier(Set<String> labels) {
         float amplifier = 0;
         Boost weightBoost = getBoost(labels);
         if (weightBoost != null) {
