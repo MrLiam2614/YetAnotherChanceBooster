@@ -27,6 +27,10 @@ public abstract class Boost {
         ticksRemain += value;
     }
 
+    public long getTicksRemain() {
+        return ticksRemain;
+    }
+
     public float getAmplifier() {
         return amplifier;
     }
@@ -38,5 +42,9 @@ public abstract class Boost {
     public void update(float amplifier, long duration) {
         setAmplifier(amplifier);
         addDuration(duration);
+    }
+
+    public void update(Boost boost) {
+        update(boost.amplifier, boost.ticksRemain);
     }
 }

@@ -13,4 +13,9 @@ public class SpeciesWeightBoost extends Boost {
     public String getSpecies() {
         return species;
     }
+
+    @Override
+    public String toString() {
+        return "species: " + species + " | amplifier: " + getAmplifier() + " | duration: " + getTicksRemain();
+    }
 }

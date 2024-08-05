@@ -15,4 +15,9 @@ public class LabelWeightBoost extends Boost {
     public Set<String> getLabels() {
         return labels;
     }
+
+    @Override
+    public String toString() {
+        return "labels: " + labels + " | amplifier: " + getAmplifier() + " | duration: " + getTicksRemain();
+    }
 }

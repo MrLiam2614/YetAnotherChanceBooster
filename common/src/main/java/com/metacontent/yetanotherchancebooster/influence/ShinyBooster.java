@@ -5,6 +5,7 @@ import com.cobblemon.mod.common.api.spawning.detail.PokemonSpawnAction;
 import com.cobblemon.mod.common.api.spawning.detail.SpawnAction;
 import com.metacontent.yetanotherchancebooster.util.BoosterUser;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 public class ShinyBooster extends SpawningBooster {
@@ -20,8 +21,6 @@ public class ShinyBooster extends SpawningBooster {
             int shinyRate = (int) Cobblemon.config.getShinyRate();
             int roll = player.getRandom().nextInt(shinyRate);
             boolean shiny = roll < amplifier;
-
-//            player.sendMessage(Text.literal("roll: " + roll + " | amplifier: " + amplifier + " | shiny: " + shiny));
 
             pokemonSpawnAction.getProps().setShiny(shiny);
         }
