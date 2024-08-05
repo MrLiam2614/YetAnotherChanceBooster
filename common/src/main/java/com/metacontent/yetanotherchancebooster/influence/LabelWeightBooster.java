@@ -5,9 +5,8 @@ import com.cobblemon.mod.common.api.spawning.context.SpawningContext;
 import com.cobblemon.mod.common.api.spawning.detail.PokemonSpawnDetail;
 import com.cobblemon.mod.common.api.spawning.detail.SpawnDetail;
 import com.cobblemon.mod.common.pokemon.Species;
-import com.metacontent.yetanotherchancebooster.util.BoosterUser;
+import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import net.minecraft.server.network.ServerPlayerEntity;
-import net.minecraft.text.Text;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Set;
@@ -27,7 +26,7 @@ public class LabelWeightBooster extends SpawningBooster {
             Set<String> labels = species.getLabels();
             if (labels.isEmpty()) return weight;
 
-            float amplifier = ((BoosterUser) player).yacb$getBoostManager().getLabelWeightAmplifier(labels);
+            float amplifier = BoostManagerData.getOrCreate(player).getManager().getLabelWeightAmplifier(labels);
             return weight * amplifier;
         }
         return super.affectWeight(spawnDetail, spawningContext, weight);

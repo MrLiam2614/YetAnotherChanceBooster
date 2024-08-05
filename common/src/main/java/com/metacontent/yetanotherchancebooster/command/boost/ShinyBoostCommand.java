@@ -1,6 +1,6 @@
 package com.metacontent.yetanotherchancebooster.command.boost;
 
-import com.metacontent.yetanotherchancebooster.util.BoosterUser;
+import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.LongArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
@@ -26,7 +26,7 @@ public class ShinyBoostCommand extends BoostCommand {
         float amplifier = FloatArgumentType.getFloat(context, AMPLIFIER);
         long duration = LongArgumentType.getLong(context, DURATION);
 
-        ((BoosterUser) player).yacb$getBoostManager().addShinyBoost(amplifier, duration);
+        BoostManagerData.getOrCreate(player).getManager().addShinyBoost(amplifier, duration);
 
         return 1;
     }

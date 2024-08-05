@@ -1,7 +1,7 @@
 package com.metacontent.yetanotherchancebooster.command.boost;
 
 import com.metacontent.yetanotherchancebooster.command.argument.LabelsArgumentType;
-import com.metacontent.yetanotherchancebooster.util.BoosterUser;
+import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.LongArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
@@ -30,7 +30,7 @@ public class LabelWeightBoostCommand extends BoostCommand {
         float amplifier = FloatArgumentType.getFloat(context, AMPLIFIER);
         long duration = LongArgumentType.getLong(context, DURATION);
 
-        ((BoosterUser) player).yacb$getBoostManager().addLabelWeightBoost(amplifier, duration, labels);
+        BoostManagerData.getOrCreate(player).getManager().addLabelWeightBoost(amplifier, duration, labels);
 
         return 1;
     }

@@ -2,7 +2,7 @@ package com.metacontent.yetanotherchancebooster.command.boost;
 
 import com.cobblemon.mod.common.command.argument.PokemonArgumentType;
 import com.cobblemon.mod.common.pokemon.Species;
-import com.metacontent.yetanotherchancebooster.util.BoosterUser;
+import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.LongArgumentType;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
@@ -28,7 +28,7 @@ public class SpeciesWeightBoostCommand extends BoostCommand {
         float amplifier = FloatArgumentType.getFloat(context, AMPLIFIER);
         long duration = LongArgumentType.getLong(context, DURATION);
 
-        ((BoosterUser) player).yacb$getBoostManager().addSpeciesWeightBoost(amplifier, duration, species.showdownId());
+        BoostManagerData.getOrCreate(player).getManager().addSpeciesWeightBoost(amplifier, duration, species.showdownId());
 
         return 1;
     }

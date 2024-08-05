@@ -1,14 +1,18 @@
 package com.metacontent.yetanotherchancebooster.util;
 
-import net.minecraft.server.network.ServerPlayerEntity;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 public class BoostManager {
+    public static final int SAVE_PERIOD = 1200;
+
     private final ShinyBoost shinyBoost = new ShinyBoost();
     private final Map<String, SpeciesWeightBoost> speciesWeightBoosts = new HashMap<>();
     private final Map<Set<String>, LabelWeightBoost> labelWeightBoosts = new HashMap<>();
+
+    private boolean shouldSave = false;
+    private int saveTimer = SAVE_PERIOD;
 
     public void tick() {
         shinyBoost.tick();
@@ -24,6 +28,22 @@ public class BoostManager {
             boost.tick();
             return boost.isEnded();
         });
+
+        if (!shouldSave) {
+            saveTimer--;
+        }
+        if (saveTimer <= 0) {
+            shouldSave = true;
+            saveTimer = SAVE_PERIOD;
+        }
+    }
+
+    public boolean isSaveNeeded() {
+        return shouldSave;
+    }
+
+    public void setShouldSave(boolean shouldSave) {
+        this.shouldSave = shouldSave;
     }
 
     public void addBoost(SpeciesWeightBoost boost) {
@@ -34,6 +54,7 @@ public class BoostManager {
         else {
             existingBoost.update(boost);
         }
+        shouldSave = true;
     }
 
     public void addBoost(LabelWeightBoost boost) {
@@ -44,10 +65,12 @@ public class BoostManager {
         else {
             existingBoost.update(boost);
         }
+        shouldSave = true;
     }
 
     public void addShinyBoost(float amplifier, long duration) {
         shinyBoost.update(amplifier, duration);
+        shouldSave = true;
     }
 
     public void addSpeciesWeightBoost(float amplifier, long duration, String species) {

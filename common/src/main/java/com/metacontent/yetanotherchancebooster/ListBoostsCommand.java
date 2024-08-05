@@ -4,8 +4,8 @@ import com.metacontent.yetanotherchancebooster.command.Command;
 import com.metacontent.yetanotherchancebooster.command.Commands;
 import com.metacontent.yetanotherchancebooster.command.argument.BoostListArgumentType;
 import com.metacontent.yetanotherchancebooster.command.argument.BoostListType;
+import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.metacontent.yetanotherchancebooster.util.BoostManager;
-import com.metacontent.yetanotherchancebooster.util.BoosterUser;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -39,7 +39,7 @@ public class ListBoostsCommand implements Command {
         BoostListType type = BoostListArgumentType.getType(context, LIST_TYPE);
 
         List<String> list = new ArrayList<>();
-        BoostManager manager = ((BoosterUser) player).yacb$getBoostManager();
+        BoostManager manager = BoostManagerData.getOrCreate(player).getManager();
 
         switch (type) {
             case ALL -> {
