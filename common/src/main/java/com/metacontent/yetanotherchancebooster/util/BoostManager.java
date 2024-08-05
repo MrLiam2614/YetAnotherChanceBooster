@@ -6,14 +6,9 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 public class BoostManager {
-    private final ServerPlayerEntity player;
     private final ShinyBoost shinyBoost = new ShinyBoost();
     private final Map<String, SpeciesWeightBoost> speciesWeightBoosts = new HashMap<>();
     private final Map<Set<String>, LabelWeightBoost> labelWeightBoosts = new HashMap<>();
-
-    public BoostManager(ServerPlayerEntity player) {
-        this.player = player;
-    }
 
     public void tick() {
         shinyBoost.tick();
