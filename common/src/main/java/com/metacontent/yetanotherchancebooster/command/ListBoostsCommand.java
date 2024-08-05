@@ -1,7 +1,5 @@
-package com.metacontent.yetanotherchancebooster;
+package com.metacontent.yetanotherchancebooster.command;
 
-import com.metacontent.yetanotherchancebooster.command.Command;
-import com.metacontent.yetanotherchancebooster.command.Commands;
 import com.metacontent.yetanotherchancebooster.command.argument.BoostListArgumentType;
 import com.metacontent.yetanotherchancebooster.command.argument.BoostListType;
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;

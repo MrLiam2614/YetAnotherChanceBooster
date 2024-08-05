@@ -1,6 +1,5 @@
 package com.metacontent.yetanotherchancebooster.command;
 
-import com.metacontent.yetanotherchancebooster.ListBoostsCommand;
 import com.metacontent.yetanotherchancebooster.command.boost.LabelWeightBoostCommand;
 import com.metacontent.yetanotherchancebooster.command.boost.ShinyBoostCommand;
 import com.metacontent.yetanotherchancebooster.command.boost.SpeciesWeightBoostCommand;
