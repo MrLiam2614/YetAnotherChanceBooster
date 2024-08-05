@@ -1,11 +1,12 @@
 package com.metacontent.yetanotherchancebooster.util;
 
+import com.metacontent.yetanotherchancebooster.YetAnotherChanceBooster;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.*;
 
 public class BoostManager {
-    public static final int SAVE_PERIOD = 1200;
+    public static final int SAVE_PERIOD = YetAnotherChanceBooster.CONFIG.savePeriod();
 
     private final ShinyBoost shinyBoost = new ShinyBoost();
     private final Map<String, SpeciesWeightBoost> speciesWeightBoosts = new HashMap<>();

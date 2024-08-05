@@ -35,5 +35,8 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         }
     }
 
-
+    @Inject(method = "onDisconnect", at = @At("TAIL"))
+    protected void injectOnDisconnect(CallbackInfo ci) {
+        PlayerDataUtil.onDisconnect((ServerPlayerEntity) (Object) this);
+    }
 }
