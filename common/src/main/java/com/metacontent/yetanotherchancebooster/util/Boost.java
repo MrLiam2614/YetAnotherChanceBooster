@@ -47,4 +47,9 @@ public abstract class Boost {
     public void update(Boost boost) {
         update(boost.amplifier, boost.ticksRemain);
     }
+
+    public void end() {
+        setAmplifier(0);
+        setTicksRemain(0);
+    }
 }

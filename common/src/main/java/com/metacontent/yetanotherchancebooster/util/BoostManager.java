@@ -98,7 +98,7 @@ public class BoostManager {
         return amplifier;
     }
 
-    public float getSpeciesWeightAmplifier(String species) {
+    public float getWeightAmplifier(String species) {
         float amplifier = 1;
         Boost weightBoost = getBoost(species);
         if (weightBoost != null) {
@@ -107,7 +107,7 @@ public class BoostManager {
         return amplifier;
     }
 
-    public float getLabelWeightAmplifier(Set<String> labels) {
+    public float getWeightAmplifier(Set<String> labels) {
         float amplifier = 1;
         Boost weightBoost = getBoost(labels);
         if (weightBoost != null) {
@@ -136,5 +136,23 @@ public class BoostManager {
 
     public List<String> listLabelWeightBoosts() {
         return labelWeightBoosts.values().stream().map(LabelWeightBoost::toString).toList();
+    }
+
+    public void endShinyBoost() {
+        shinyBoost.end();
+    }
+
+    public void endWeightBoost(String species) {
+         Boost boost = getBoost(species);
+         if (boost != null) {
+             boost.end();
+         }
+    }
+
+    public void endWeightBoost(Set<String> labels) {
+        Boost boost = getBoost(labels);
+        if (boost != null) {
+            boost.end();
+        }
     }
 }
