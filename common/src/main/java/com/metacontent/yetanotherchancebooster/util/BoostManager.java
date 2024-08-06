@@ -155,4 +155,10 @@ public class BoostManager {
             boost.end();
         }
     }
+
+    public void endAll() {
+        endShinyBoost();
+        speciesWeightBoosts.keySet().forEach(this::endWeightBoost);
+        labelWeightBoosts.keySet().forEach(this::endWeightBoost);
+    }
 }
