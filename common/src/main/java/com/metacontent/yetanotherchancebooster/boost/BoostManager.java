@@ -193,7 +193,8 @@ public class BoostManager {
             return rawMap.entrySet().stream()
                     .map(entry -> {
                         String string = entry.getKey();
-                        Set<String> labels = Set.of(string.substring(1, string.length() - 1).strip().split(","));
+                        Set<String> labels = Set.of(string.substring(1, string.length() - 1).split(","))
+                                .stream().map(String::strip).filter(s -> !s.isEmpty()).collect(Collectors.toSet());
                         return Map.entry(labels, entry.getValue());
                     })
                     .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
