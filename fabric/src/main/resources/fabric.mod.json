@@ -3,15 +3,15 @@
   "id": "yetanotherchancebooster",
   "version": "${version}",
   "name": "YetAnotherChanceBooster",
-  "description": "This is an example description! Tell everyone what your mod is about!",
+  "description": "Server-side side-mod for Cobblemon, that allows you to boost spawn chances",
   "authors": [
-    "Me!"
+    "gatekeep06"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://modrinth.com/mod/yetanotherchancebooster",
+    "sources": "https://github.com/gatekeep06/YetAnotherChanceBooster"
   },
-  "license": "CC0-1.0",
+  "license": "MPL-2.0",
   "icon": "assets/yetanotherchancebooster/icon.png",
   "environment": "*",
   "entrypoints": {

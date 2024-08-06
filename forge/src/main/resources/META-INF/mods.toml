@@ -1,17 +1,17 @@
 modLoader = "javafml"
 loaderVersion = "[47,)"
 #issueTrackerURL = ""
-license = "Insert License Here"
+license = "MPL-2.0"
 
 [[mods]]
 modId = "yetanotherchancebooster"
 version = "${version}"
 displayName = "YetAnotherChanceBooster"
-authors = "Me!"
+authors = "gatekeep06"
 description = '''
-This is an example description! Tell everyone what your mod is about!
+Server-side side-mod for Cobblemon, that allows you to boost spawn chances
 '''
-#logoFile = ""
+logoFile = "/assets/yetanotherchancebooster/icon.png"
 
 [[dependencies.yetanotherchancebooster]]
 modId = "forge"
