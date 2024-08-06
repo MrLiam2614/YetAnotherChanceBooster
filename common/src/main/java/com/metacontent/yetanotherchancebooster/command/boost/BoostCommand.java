@@ -12,7 +12,6 @@ import net.minecraft.server.command.ServerCommandSource;
 
 public abstract class BoostCommand implements Command {
     public static final String BOOST_COMMAND = "boost";
-    public static final String PLAYER = "player";
     public static final String AMPLIFIER = "amplifier";
     public static final String DURATION = "duration";
 

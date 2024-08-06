@@ -8,6 +8,8 @@ import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
 
 public interface Command {
+    String PLAYER = "player";
+
     void register(CommandDispatcher<ServerCommandSource> dispatcher);
 
     default void register(CommandDispatcher<ServerCommandSource> dispatcher, CommandRegistryAccess commandRegistryAccess, CommandManager.RegistrationEnvironment registrationEnvironment) {
