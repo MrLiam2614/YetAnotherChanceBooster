@@ -15,7 +15,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 public class LabelsArgumentType implements ArgumentType<Set<String>> {
-    public static final List<String> EXAMPLES = List.of("legendary,gen3", "gen4", "legendary,mythical");
+    private static final List<String> EXAMPLES = List.of("legendary,gen3", "gen4", "legendary,mythical");
 
     @Override
     public Set<String> parse(StringReader reader) throws CommandSyntaxException {
