@@ -12,6 +12,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 public class LabelsArgumentType implements ArgumentType<Set<String>> {
     public static final List<String> EXAMPLES = List.of("legendary,gen3", "gen4", "legendary,mythical");
@@ -20,7 +21,7 @@ public class LabelsArgumentType implements ArgumentType<Set<String>> {
     public Set<String> parse(StringReader reader) throws CommandSyntaxException {
         String argument = reader.getRemaining();
         reader.setCursor(reader.getTotalLength());
-        return Set.of(argument.strip().split(","));
+        return Set.of(argument.strip().split(",")).stream().map(String::strip).collect(Collectors.toSet());
     }
 
     @Override
