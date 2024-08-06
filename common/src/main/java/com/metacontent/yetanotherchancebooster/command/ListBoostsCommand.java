@@ -1,13 +1,12 @@
 package com.metacontent.yetanotherchancebooster.command;
 
-import com.metacontent.yetanotherchancebooster.command.argument.BoostListArgumentType;
-import com.metacontent.yetanotherchancebooster.command.argument.BoostListType;
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.metacontent.yetanotherchancebooster.boost.BoostManager;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.command.CommandSource;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -18,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListBoostsCommand implements Command {
+    public static final List<String> LIST_TYPES = List.of("all", "shiny", "species", "labels");
     public static final String LIST = "list";
     public static final String PLAYER = "player";
     public static final String LIST_TYPE = "boosts";
@@ -28,6 +28,14 @@ public class ListBoostsCommand implements Command {
                 .then(CommandManager.literal(LIST)
                         .then(CommandManager.argument(PLAYER, EntityArgumentType.player())
                                 .then(CommandManager.argument(LIST_TYPE, StringArgumentType.word())
+                                        .suggests((context, builder) -> {
+                                            for (String type : LIST_TYPES) {
+                                                if (CommandSource.shouldSuggest(builder.getRemaining(), type)) {
+                                                    builder.suggest(type);
+                                                }
+                                            }
+                                            return builder.buildFuture();
+                                        })
                                         .executes(this::run)))));
     }
 
