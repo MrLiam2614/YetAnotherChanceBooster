@@ -21,7 +21,7 @@ public class LabelsArgumentType implements ArgumentType<Set<String>> {
     public Set<String> parse(StringReader reader) throws CommandSyntaxException {
         String argument = reader.getRemaining();
         reader.setCursor(reader.getTotalLength());
-        return Set.of(argument.strip().split(",")).stream().map(String::strip).collect(Collectors.toSet());
+        return Set.of(argument.strip().split(",")).stream().map(String::strip).filter(s -> !s.isEmpty()).collect(Collectors.toSet());
     }
 
     @Override
