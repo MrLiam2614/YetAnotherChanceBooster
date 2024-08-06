@@ -12,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BoostManagerData implements PlayerDataExtension {
     public static final String NAME = "yacb$boostManager";
+    public static final String MANAGER_KEY = "manager";
     private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
 
     private BoostManager manager = new BoostManager();
@@ -34,7 +35,7 @@ public class BoostManagerData implements PlayerDataExtension {
     @NotNull
     @Override
     public PlayerDataExtension deserialize(@NotNull JsonObject jsonObject) {
-        JsonObject jsonManager = jsonObject.getAsJsonObject("manager");
+        JsonObject jsonManager = jsonObject.getAsJsonObject(MANAGER_KEY);
         manager = GSON.fromJson(jsonManager, BoostManager.class);
         if (manager == null) {
             manager = new BoostManager();
@@ -51,6 +52,11 @@ public class BoostManagerData implements PlayerDataExtension {
     @NotNull
     @Override
     public JsonObject serialize() {
-        return GSON.toJsonTree(this).getAsJsonObject();
+        JsonObject json = new JsonObject();
+        json.addProperty(PlayerDataExtension.Companion.getNAME_KEY(), NAME);
+
+        json.add(MANAGER_KEY, GSON.toJsonTree(manager));
+
+        return json;
     }
 }
