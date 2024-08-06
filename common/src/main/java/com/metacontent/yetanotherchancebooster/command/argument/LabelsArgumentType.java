@@ -20,7 +20,7 @@ public class LabelsArgumentType implements ArgumentType<Set<String>> {
     public Set<String> parse(StringReader reader) throws CommandSyntaxException {
         String argument = reader.getRemaining();
         reader.setCursor(reader.getTotalLength());
-        return Set.of(argument.split(","));
+        return Set.of(argument.strip().split(","));
     }
 
     @Override
