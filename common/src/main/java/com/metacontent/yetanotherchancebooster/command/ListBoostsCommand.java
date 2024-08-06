@@ -5,6 +5,7 @@ import com.metacontent.yetanotherchancebooster.command.argument.BoostListType;
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.metacontent.yetanotherchancebooster.boost.BoostManager;
 import com.mojang.brigadier.CommandDispatcher;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.command.argument.EntityArgumentType;
@@ -26,7 +27,7 @@ public class ListBoostsCommand implements Command {
         dispatcher.register(Commands.BASE_COMMAND
                 .then(CommandManager.literal(LIST)
                         .then(CommandManager.argument(PLAYER, EntityArgumentType.player())
-                                .then(CommandManager.argument(LIST_TYPE, BoostListArgumentType.boostList())
+                                .then(CommandManager.argument(LIST_TYPE, StringArgumentType.word())
                                         .executes(this::run)))));
     }
 
@@ -34,13 +35,14 @@ public class ListBoostsCommand implements Command {
     public int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerPlayerEntity source = context.getSource().getPlayerOrThrow();
         ServerPlayerEntity player = EntityArgumentType.getPlayer(context, PLAYER);
-        BoostListType type = BoostListArgumentType.getType(context, LIST_TYPE);
+        String type = StringArgumentType.getString(context, LIST_TYPE);
 
         List<String> list = new ArrayList<>();
         BoostManager manager = BoostManagerData.getOrCreate(player).getManager();
 
         switch (type) {
-            case ALL -> {
+            default -> {}
+            case "all" -> {
                 list.add("Shiny ->");
                 list.add(manager.getShinyBoostString());
                 list.add("Species ->");
@@ -48,15 +50,15 @@ public class ListBoostsCommand implements Command {
                 list.add("Labels ->");
                 list.addAll(manager.listLabelWeightBoosts());
             }
-            case SHINY -> {
+            case "shiny" -> {
                 list.add("Shiny ->");
                 list.add(manager.getShinyBoostString());
             }
-            case SPECIES -> {
+            case "species" -> {
                 list.add("Species ->");
                 list.addAll(manager.listSpeciesWeightBoosts());
             }
-            case LABELS -> {
+            case "labels" -> {
                 list.add("Labels: ->");
                 list.addAll(manager.listLabelWeightBoosts());
             }

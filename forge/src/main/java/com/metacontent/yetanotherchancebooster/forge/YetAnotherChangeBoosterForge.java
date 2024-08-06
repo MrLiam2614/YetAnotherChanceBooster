@@ -19,13 +19,13 @@ import net.minecraftforge.registries.DeferredRegister;
 
 @Mod(YetAnotherChanceBooster.MOD_ID)
 public final class YetAnotherChangeBoosterForge {
-    private final DeferredRegister<ArgumentSerializer<?, ?>> argumentTypes = DeferredRegister.create(RegistryKeys.COMMAND_ARGUMENT_TYPE,
-            YetAnotherChanceBooster.MOD_ID);
+//    private final DeferredRegister<ArgumentSerializer<?, ?>> argumentTypes = DeferredRegister.create(RegistryKeys.COMMAND_ARGUMENT_TYPE,
+//            YetAnotherChanceBooster.MOD_ID);
 
     public YetAnotherChangeBoosterForge() {
-        registerArgument(new Identifier(YetAnotherChanceBooster.MOD_ID, "boost_list"), BoostListArgumentType.class, ConstantArgumentSerializer.of(BoostListArgumentType::boostList));
-        registerArgument(new Identifier(YetAnotherChanceBooster.MOD_ID, "labels"), LabelsArgumentType.class, ConstantArgumentSerializer.of(LabelsArgumentType::labels));
-        argumentTypes.register(FMLJavaModLoadingContext.get().getModEventBus());
+//        registerArgument(new Identifier(YetAnotherChanceBooster.MOD_ID, "boost_list"), BoostListArgumentType.class, ConstantArgumentSerializer.of(BoostListArgumentType::boostList));
+//        registerArgument(new Identifier(YetAnotherChanceBooster.MOD_ID, "labels"), LabelsArgumentType.class, ConstantArgumentSerializer.of(LabelsArgumentType::labels));
+//        argumentTypes.register(FMLJavaModLoadingContext.get().getModEventBus());
         YetAnotherChanceBooster.init();
         MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
     }
@@ -34,7 +34,7 @@ public final class YetAnotherChangeBoosterForge {
         CommandRegistryProvider.registerCommands(command -> command.register(event.getDispatcher()));
     }
 
-    public <A extends ArgumentType<?>, T extends ArgumentSerializer.ArgumentTypeProperties<A>> void registerArgument(Identifier id, Class<A> aClass, ArgumentSerializer<A, T> serializer) {
-        argumentTypes.register(id.getPath(), () -> ArgumentTypes.registerByClass(aClass, serializer));
-    }
+//    public <A extends ArgumentType<?>, T extends ArgumentSerializer.ArgumentTypeProperties<A>> void registerArgument(Identifier id, Class<A> aClass, ArgumentSerializer<A, T> serializer) {
+//        argumentTypes.register(id.getPath(), () -> ArgumentTypes.registerByClass(aClass, serializer));
+//    }
 }

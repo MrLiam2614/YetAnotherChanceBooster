@@ -16,7 +16,7 @@ public final class YetAnotherChangeBoosterFabric implements ModInitializer {
     public void onInitialize() {
         YetAnotherChanceBooster.init();
         CommandRegistryProvider.registerCommands(command -> CommandRegistrationCallback.EVENT.register(command::register));
-        ArgumentTypeRegistry.registerArgumentType(new Identifier(YetAnotherChanceBooster.MOD_ID, "boost_list"), BoostListArgumentType.class, ConstantArgumentSerializer.of(BoostListArgumentType::boostList));
-        ArgumentTypeRegistry.registerArgumentType(new Identifier(YetAnotherChanceBooster.MOD_ID, "labels"), LabelsArgumentType.class, ConstantArgumentSerializer.of(LabelsArgumentType::labels));
+//        ArgumentTypeRegistry.registerArgumentType(new Identifier(YetAnotherChanceBooster.MOD_ID, "boost_list"), BoostListArgumentType.class, ConstantArgumentSerializer.of(BoostListArgumentType::boostList));
+//        ArgumentTypeRegistry.registerArgumentType(new Identifier(YetAnotherChanceBooster.MOD_ID, "labels"), LabelsArgumentType.class, ConstantArgumentSerializer.of(LabelsArgumentType::labels));
     }
 }

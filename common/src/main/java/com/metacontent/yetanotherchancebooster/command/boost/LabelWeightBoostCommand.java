@@ -4,6 +4,7 @@ import com.metacontent.yetanotherchancebooster.command.argument.LabelsArgumentTy
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.LongArgumentType;
+import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.builder.RequiredArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
@@ -14,19 +15,22 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class LabelWeightBoostCommand extends BoostCommand {
     public static final String LABELS = "labels";
 
     @Override
-    protected ArgumentBuilder<ServerCommandSource, RequiredArgumentBuilder<ServerCommandSource, Set<String>>> boost() {
-        return CommandManager.argument(LABELS, LabelsArgumentType.labels()).executes(this::run);
+    protected ArgumentBuilder<ServerCommandSource, RequiredArgumentBuilder<ServerCommandSource, String>> boost() {
+        return CommandManager.argument(LABELS, StringArgumentType.greedyString()).executes(this::run);
     }
 
     @Override
     public int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
         ServerPlayerEntity player = EntityArgumentType.getPlayer(context, PLAYER);
-        Set<String> labels = LabelsArgumentType.getLabels(context, LABELS);
+        String argument = StringArgumentType.getString(context, LABELS);
+        Set<String> labels = Set.of(argument.strip().split(",")).stream().map(String::strip).filter(s -> !s.isEmpty())
+                 .collect(Collectors.toSet());
         float amplifier = FloatArgumentType.getFloat(context, AMPLIFIER);
         long duration = LongArgumentType.getLong(context, DURATION);
 
