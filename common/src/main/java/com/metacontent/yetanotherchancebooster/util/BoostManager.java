@@ -1,15 +1,24 @@
 package com.metacontent.yetanotherchancebooster.util;
 
+import com.google.common.reflect.TypeToken;
+import com.google.gson.*;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.stream.JsonReader;
+import com.google.gson.stream.JsonWriter;
 import com.metacontent.yetanotherchancebooster.YetAnotherChanceBooster;
 import org.jetbrains.annotations.Nullable;
 
+import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class BoostManager {
     public static final int SAVE_PERIOD = YetAnotherChanceBooster.CONFIG.savePeriod();
 
     private final ShinyBoost shinyBoost = new ShinyBoost();
     private final Map<String, SpeciesWeightBoost> speciesWeightBoosts = new HashMap<>();
+    @JsonAdapter(LabelMapAdapter.class)
     private final Map<Set<String>, LabelWeightBoost> labelWeightBoosts = new HashMap<>();
 
     private boolean shouldSave = false;
@@ -160,5 +169,27 @@ public class BoostManager {
         endShinyBoost();
         speciesWeightBoosts.keySet().forEach(this::endWeightBoost);
         labelWeightBoosts.keySet().forEach(this::endWeightBoost);
+    }
+
+    public static class LabelMapAdapter extends TypeAdapter<Map<Set<String>, LabelWeightBoost>> {
+        private static final Gson GSON = new GsonBuilder().disableHtmlEscaping().setPrettyPrinting().create();
+
+        @Override
+        public void write(JsonWriter out, Map<Set<String>, LabelWeightBoost> value) throws IOException {
+            GSON.toJson(value, value.getClass(), out);
+        }
+
+        @Override
+        public Map<Set<String>, LabelWeightBoost> read(JsonReader in) throws IOException {
+            Type type = new TypeToken<Map<String, LabelWeightBoost>>(){}.getType();
+            Map<String, LabelWeightBoost> rawMap = GSON.fromJson(in, type);
+            return rawMap.entrySet().stream()
+                    .map(entry -> {
+                        String string = entry.getKey();
+                        Set<String> labels = Set.of(string.substring(1, string.length() - 1).strip().split(","));
+                        return Map.entry(labels, entry.getValue());
+                    })
+                    .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
+        }
     }
 }
