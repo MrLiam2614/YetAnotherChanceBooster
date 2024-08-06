@@ -9,7 +9,7 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 
 public record Config(int savePeriod, boolean saveWhenDisconnected) {
-    public static final String PATH = "config/yetanotherchancebooster/config.json";
+    public static final String PATH = "config/yetanotherchancebooster/main.json";
 
     private Config() {
         this(1200, true);
