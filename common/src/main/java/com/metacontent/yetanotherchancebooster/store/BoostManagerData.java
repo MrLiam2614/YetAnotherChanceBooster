@@ -6,7 +6,7 @@ import com.cobblemon.mod.common.api.storage.player.PlayerDataExtension;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
-import com.metacontent.yetanotherchancebooster.util.BoostManager;
+import com.metacontent.yetanotherchancebooster.boost.BoostManager;
 import net.minecraft.server.network.ServerPlayerEntity;
 import org.jetbrains.annotations.NotNull;
 

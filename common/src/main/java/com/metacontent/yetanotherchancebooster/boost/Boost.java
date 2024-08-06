@@ -1,4 +1,4 @@
-package com.metacontent.yetanotherchancebooster.util;
+package com.metacontent.yetanotherchancebooster.boost;
 
 public abstract class Boost {
     private float amplifier;

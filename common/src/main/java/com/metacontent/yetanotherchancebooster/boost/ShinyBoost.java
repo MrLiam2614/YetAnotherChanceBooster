@@ -1,4 +1,4 @@
-package com.metacontent.yetanotherchancebooster.util;
+package com.metacontent.yetanotherchancebooster.boost;
 
 public class ShinyBoost extends Boost {
     public ShinyBoost() {

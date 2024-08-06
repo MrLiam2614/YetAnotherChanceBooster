@@ -3,7 +3,7 @@ package com.metacontent.yetanotherchancebooster.command;
 import com.metacontent.yetanotherchancebooster.command.argument.BoostListArgumentType;
 import com.metacontent.yetanotherchancebooster.command.argument.BoostListType;
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
-import com.metacontent.yetanotherchancebooster.util.BoostManager;
+import com.metacontent.yetanotherchancebooster.boost.BoostManager;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;

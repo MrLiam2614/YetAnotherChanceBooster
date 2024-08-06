@@ -2,7 +2,7 @@ package com.metacontent.yetanotherchancebooster.mixin;
 
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.metacontent.yetanotherchancebooster.store.PlayerDataUtil;
-import com.metacontent.yetanotherchancebooster.util.BoostManager;
+import com.metacontent.yetanotherchancebooster.boost.BoostManager;
 import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
