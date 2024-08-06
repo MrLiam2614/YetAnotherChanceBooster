@@ -16,7 +16,7 @@ public class SpeciesWeightBooster extends SpawningBooster {
     public float affectWeight(@NotNull SpawnDetail spawnDetail, @NotNull SpawningContext spawningContext, float weight) {
         if (spawnDetail instanceof PokemonSpawnDetail pokemonSpawnDetail) {
             String species = pokemonSpawnDetail.getPokemon().getSpecies();
-            float amplifier = BoostManagerData.getOrCreate(player).getManager().getSpeciesWeightAmplifier(species);
+            float amplifier = BoostManagerData.getOrCreate(player).getManager().getWeightAmplifier(species);
 
             return weight * amplifier;
         }

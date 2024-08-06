@@ -26,7 +26,7 @@ public class LabelWeightBooster extends SpawningBooster {
             Set<String> labels = species.getLabels();
             if (labels.isEmpty()) return weight;
 
-            float amplifier = BoostManagerData.getOrCreate(player).getManager().getLabelWeightAmplifier(labels);
+            float amplifier = BoostManagerData.getOrCreate(player).getManager().getWeightAmplifier(labels);
             return weight * amplifier;
         }
         return super.affectWeight(spawnDetail, spawningContext, weight);
