@@ -16,18 +16,16 @@ public class BoostManager {
     private int saveTimer = SAVE_PERIOD;
 
     public void tick() {
-        shinyBoost.tick();
+        tickAndCheckBoost(shinyBoost);
 
         speciesWeightBoosts.entrySet().removeIf(boostEntry -> {
             SpeciesWeightBoost boost = boostEntry.getValue();
-            boost.tick();
-            return boost.isEnded();
+            return tickAndCheckBoost(boost);
         });
 
         labelWeightBoosts.entrySet().removeIf(boostEntry -> {
             LabelWeightBoost boost = boostEntry.getValue();
-            boost.tick();
-            return boost.isEnded();
+            return tickAndCheckBoost(boost);
         });
 
         if (!shouldSave) {
@@ -37,6 +35,14 @@ public class BoostManager {
             shouldSave = true;
             saveTimer = SAVE_PERIOD;
         }
+    }
+
+    private boolean tickAndCheckBoost(Boost boost) {
+        boost.tick();
+        if (boost.isEnded()) {
+            shouldSave = true;
+        }
+        return boost.isEnded();
     }
 
     public boolean isSaveNeeded() {
