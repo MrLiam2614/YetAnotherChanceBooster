@@ -117,10 +117,13 @@ public class BoostManager {
     }
 
     public float getWeightAmplifier(Set<String> labels) {
-        float amplifier = 1;
-        Boost weightBoost = getBoost(labels);
-        if (weightBoost != null) {
-            amplifier = weightBoost.getAmplifier();
+        Set<LabelWeightBoost> weightBoosts = getLabelWeightBoosts(labels);
+        if (weightBoosts.isEmpty()) {
+            return 1;
+        }
+        float amplifier = 0;
+        for (LabelWeightBoost boost : weightBoosts) {
+            amplifier += boost.getAmplifier();
         }
         return amplifier;
     }
@@ -133,6 +136,10 @@ public class BoostManager {
     @Nullable
     public LabelWeightBoost getBoost(Set<String> labels) {
         return labelWeightBoosts.get(labels);
+    }
+
+    public Set<LabelWeightBoost> getLabelWeightBoosts(Set<String> labels) {
+        return labelWeightBoosts.entrySet().stream().filter(entry -> labels.containsAll(entry.getKey())).map(Map.Entry::getValue).collect(Collectors.toSet());
     }
 
     public String getShinyBoostString() {
