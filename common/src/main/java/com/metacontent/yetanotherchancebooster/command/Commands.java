@@ -1,8 +1,6 @@
 package com.metacontent.yetanotherchancebooster.command;
 
-import com.metacontent.yetanotherchancebooster.command.boost.LabelWeightBoostCommand;
-import com.metacontent.yetanotherchancebooster.command.boost.ShinyBoostCommand;
-import com.metacontent.yetanotherchancebooster.command.boost.SpeciesWeightBoostCommand;
+import com.metacontent.yetanotherchancebooster.command.boost.*;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
 import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.command.ServerCommandSource;
@@ -17,6 +15,10 @@ public class Commands {
         CommandRegistryProvider.add(new ShinyBoostCommand());
         CommandRegistryProvider.add(new SpeciesWeightBoostCommand());
         CommandRegistryProvider.add(new LabelWeightBoostCommand());
+        CommandRegistryProvider.add(new RemoveAllBoostsCommand());
+        CommandRegistryProvider.add(new RemoveShinyBoostCommand());
+        CommandRegistryProvider.add(new RemoveSpeciesWeightBoostCommand());
+        CommandRegistryProvider.add(new RemoveLabelWeightBoostCommand());
         CommandRegistryProvider.add(new ListBoostsCommand());
     }
 }
