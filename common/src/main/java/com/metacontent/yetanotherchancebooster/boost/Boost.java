@@ -52,4 +52,6 @@ public abstract class Boost {
         setAmplifier(0);
         setTicksRemain(0);
     }
+
+    public abstract String info();
 }

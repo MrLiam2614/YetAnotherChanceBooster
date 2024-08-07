@@ -21,6 +21,8 @@ public class BoostManager {
     @JsonAdapter(LabelMapAdapter.class)
     private final Map<Set<String>, LabelWeightBoost> labelWeightBoosts = new HashMap<>();
 
+    private final List<Boost> endedBoosts = new ArrayList<>();
+
     private boolean shouldSave = false;
     private int saveTimer = SAVE_PERIOD;
 
@@ -49,6 +51,7 @@ public class BoostManager {
     private boolean tickAndCheckBoost(Boost boost) {
         boost.tick();
         if (boost.isEnded()) {
+            endedBoosts.add(boost);
             shouldSave = true;
         }
         return boost.isEnded();
@@ -89,16 +92,6 @@ public class BoostManager {
         shouldSave = true;
     }
 
-    public void addSpeciesWeightBoost(float amplifier, long duration, String species) {
-        SpeciesWeightBoost boost = new SpeciesWeightBoost(amplifier, duration, species);
-        addBoost(boost);
-    }
-
-    public void addLabelWeightBoost(float amplifier, long duration, Set<String> labels) {
-        LabelWeightBoost boost = new LabelWeightBoost(amplifier, duration, labels);
-        addBoost(boost);
-    }
-
     public float getShinyAmplifier() {
         float amplifier = 0;
         if (!shinyBoost.isEnded()) {
@@ -126,6 +119,10 @@ public class BoostManager {
             amplifier += boost.getAmplifier();
         }
         return amplifier;
+    }
+
+    public ShinyBoost getShinyBoost() {
+        return shinyBoost;
     }
 
     @Nullable
@@ -176,6 +173,10 @@ public class BoostManager {
         endShinyBoost();
         speciesWeightBoosts.keySet().forEach(this::endWeightBoost);
         labelWeightBoosts.keySet().forEach(this::endWeightBoost);
+    }
+
+    public List<Boost> getEndedBoosts() {
+        return endedBoosts;
     }
 
     public static class LabelMapAdapter extends TypeAdapter<Map<Set<String>, LabelWeightBoost>> {

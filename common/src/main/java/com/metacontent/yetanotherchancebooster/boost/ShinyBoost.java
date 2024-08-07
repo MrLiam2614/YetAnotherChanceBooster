@@ -9,4 +9,9 @@ public class ShinyBoost extends Boost {
     public String toString() {
         return "amplifier: " + getAmplifier() + " | duration: " + getTicksRemain();
     }
+
+    @Override
+    public String info() {
+        return "Shiny boost";
+    }
 }

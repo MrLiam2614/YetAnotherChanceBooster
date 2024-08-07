@@ -1,5 +1,8 @@
 package com.metacontent.yetanotherchancebooster.command.boost;
 
+import com.metacontent.yetanotherchancebooster.boost.BoostManager;
+import com.metacontent.yetanotherchancebooster.event.BoostStartedEvent;
+import com.metacontent.yetanotherchancebooster.event.Events;
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.LongArgumentType;
@@ -22,11 +25,14 @@ public class ShinyBoostCommand extends BoostCommand {
 
     @Override
     public int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        ServerPlayerEntity source = context.getSource().getPlayerOrThrow();
         ServerPlayerEntity player = EntityArgumentType.getPlayer(context, PLAYER);
         float amplifier = FloatArgumentType.getFloat(context, AMPLIFIER);
         long duration = LongArgumentType.getLong(context, DURATION);
 
-        BoostManagerData.getOrCreate(player).getManager().addShinyBoost(amplifier, duration);
+        BoostManager manager = BoostManagerData.getOrCreate(player).getManager();
+        manager.addShinyBoost(amplifier, duration);
+        Events.BOOST_STARTED.emit(new BoostStartedEvent(player, manager.getShinyBoost(), source.getEntityName()));
 
         return 1;
     }

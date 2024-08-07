@@ -1,5 +1,7 @@
 package com.metacontent.yetanotherchancebooster.mixin;
 
+import com.metacontent.yetanotherchancebooster.event.BoostEndedEvent;
+import com.metacontent.yetanotherchancebooster.event.Events;
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.metacontent.yetanotherchancebooster.store.PlayerDataUtil;
 import com.metacontent.yetanotherchancebooster.boost.BoostManager;
@@ -32,6 +34,11 @@ public abstract class ServerPlayerEntityMixin extends PlayerEntity {
         if (yacb$boostManager.isSaveNeeded()) {
             PlayerDataUtil.save((ServerPlayerEntity) (Object) this);
             yacb$boostManager.setShouldSave(false);
+        }
+
+        if (!yacb$boostManager.getEndedBoosts().isEmpty()) {
+            yacb$boostManager.getEndedBoosts().forEach(boost -> Events.BOOST_ENDED.emit(new BoostEndedEvent((ServerPlayerEntity) (Object) this, boost)));
+            yacb$boostManager.getEndedBoosts().clear();
         }
     }
 

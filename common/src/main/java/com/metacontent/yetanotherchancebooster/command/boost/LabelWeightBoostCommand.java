@@ -1,6 +1,9 @@
 package com.metacontent.yetanotherchancebooster.command.boost;
 
+import com.metacontent.yetanotherchancebooster.boost.LabelWeightBoost;
 import com.metacontent.yetanotherchancebooster.command.argument.LabelsArgumentType;
+import com.metacontent.yetanotherchancebooster.event.BoostStartedEvent;
+import com.metacontent.yetanotherchancebooster.event.Events;
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.LongArgumentType;
@@ -27,6 +30,7 @@ public class LabelWeightBoostCommand extends BoostCommand {
 
     @Override
     public int run(CommandContext<ServerCommandSource> context) throws CommandSyntaxException {
+        ServerPlayerEntity source = context.getSource().getPlayerOrThrow();
         ServerPlayerEntity player = EntityArgumentType.getPlayer(context, PLAYER);
         String argument = StringArgumentType.getString(context, LABELS);
         Set<String> labels = Set.of(argument.strip().split(",")).stream().map(String::strip).filter(s -> !s.isEmpty())
@@ -34,7 +38,9 @@ public class LabelWeightBoostCommand extends BoostCommand {
         float amplifier = FloatArgumentType.getFloat(context, AMPLIFIER);
         long duration = LongArgumentType.getLong(context, DURATION);
 
-        BoostManagerData.getOrCreate(player).getManager().addLabelWeightBoost(amplifier, duration, labels);
+        LabelWeightBoost boost = new LabelWeightBoost(amplifier, duration, labels);
+        BoostManagerData.getOrCreate(player).getManager().addBoost(boost);
+        Events.BOOST_STARTED.emit(new BoostStartedEvent(player, boost, source.getEntityName()));
 
         return 1;
     }
