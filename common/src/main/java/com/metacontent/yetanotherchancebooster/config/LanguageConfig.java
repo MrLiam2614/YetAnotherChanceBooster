@@ -18,7 +18,7 @@ public record LanguageConfig(
     public static final String PATH = "config/yetanotherchancebooster/language.json";
 
     private LanguageConfig() {
-        this("%s has ended", "%s with amplifier %02f has started and will last for %s (source: %s)",
+        this("%s has ended", "%s with amplifier %.2f has started and will last for %s (source: %s)",
                 "Shiny ->", "Species ->", "Labels ->");
     }
 
