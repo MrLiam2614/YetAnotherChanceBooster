@@ -26,7 +26,7 @@
     "yetanotherchancebooster.mixins.json"
   ],
   "depends": {
-    "fabricloader": ">=0.16.0",
+    "fabricloader": ">=0.15.10",
     "minecraft": "~1.20.1",
     "java": ">=17",
     "fabric-api": "*"
