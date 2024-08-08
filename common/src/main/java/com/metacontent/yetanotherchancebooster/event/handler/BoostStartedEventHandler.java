@@ -1,5 +1,6 @@
 package com.metacontent.yetanotherchancebooster.event.handler;
 
+import com.metacontent.yetanotherchancebooster.YetAnotherChanceBooster;
 import com.metacontent.yetanotherchancebooster.boost.Boost;
 import com.metacontent.yetanotherchancebooster.event.BoostStartedEvent;
 import kotlin.Unit;
@@ -12,9 +13,8 @@ public class BoostStartedEventHandler implements EventHandler<BoostStartedEvent>
         ServerPlayerEntity player = event.player();
         Boost boost = event.boost();
         long seconds = boost.getTicksRemain() / 20;
-        player.sendMessage(Text.literal(boost.info() + " with amplifier " + boost.getAmplifier()
-                + " has started and will last for " + secondsToTimeString(seconds)
-                + " (source: " + event.source() + ")"));
+        player.sendMessage(Text.literal(String.format(YetAnotherChanceBooster.LANGUAGE.boostStartedMessage(),
+                boost.info(), boost.getAmplifier(), secondsToTimeString(seconds), event.source())));
         return Unit.INSTANCE;
     }
 

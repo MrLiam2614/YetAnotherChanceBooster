@@ -6,6 +6,7 @@ import com.cobblemon.mod.common.api.storage.player.PlayerDataExtensionRegistry;
 import com.metacontent.yetanotherchancebooster.boost.Boost;
 import com.metacontent.yetanotherchancebooster.command.Commands;
 import com.metacontent.yetanotherchancebooster.config.Config;
+import com.metacontent.yetanotherchancebooster.config.LanguageConfig;
 import com.metacontent.yetanotherchancebooster.event.Events;
 import com.metacontent.yetanotherchancebooster.influence.LabelWeightBooster;
 import com.metacontent.yetanotherchancebooster.influence.ShinyBooster;
@@ -21,6 +22,7 @@ public final class YetAnotherChanceBooster {
     public static final String MOD_ID = "yetanotherchancebooster";
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final Config CONFIG = Config.init();
+    public static final LanguageConfig LANGUAGE = LanguageConfig.init();
 
     public static void init() {
         PlayerSpawnerFactory.INSTANCE.getInfluenceBuilders().add(ShinyBooster::new);
@@ -34,7 +36,7 @@ public final class YetAnotherChanceBooster {
         Events.BOOST_ENDED.subscribe(Priority.NORMAL, event -> {
             ServerPlayerEntity player = event.player();
             Boost boost = event.boost();
-            player.sendMessage(Text.literal(boost.info() + " has ended"));
+            player.sendMessage(Text.literal(String.format(LANGUAGE.boostEndedMessage(), boost.info())));
             return Unit.INSTANCE;
         });
         Events.BOOST_STARTED.subscribe(Priority.NORMAL, Events.BOOST_STARTED_EVENT_HANDLER::handle);

@@ -1,5 +1,7 @@
 package com.metacontent.yetanotherchancebooster.command;
 
+import com.metacontent.yetanotherchancebooster.YetAnotherChanceBooster;
+import com.metacontent.yetanotherchancebooster.config.LanguageConfig;
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
 import com.metacontent.yetanotherchancebooster.boost.BoostManager;
 import com.mojang.brigadier.CommandDispatcher;
@@ -48,26 +50,28 @@ public class ListBoostsCommand implements Command {
         List<String> list = new ArrayList<>();
         BoostManager manager = BoostManagerData.getOrCreate(player).getManager();
 
+        // i mean... it could be worse
+        LanguageConfig language = YetAnotherChanceBooster.LANGUAGE;
         switch (type) {
             default -> {}
             case "all" -> {
-                list.add("Shiny ->");
+                list.add(language.shiny());
                 list.add(manager.getShinyBoostString());
-                list.add("Species ->");
+                list.add(language.species());
                 list.addAll(manager.listSpeciesWeightBoosts());
-                list.add("Labels ->");
+                list.add(language.labels());
                 list.addAll(manager.listLabelWeightBoosts());
             }
             case "shiny" -> {
-                list.add("Shiny ->");
+                list.add(language.shiny());
                 list.add(manager.getShinyBoostString());
             }
             case "species" -> {
-                list.add("Species ->");
+                list.add(language.species());
                 list.addAll(manager.listSpeciesWeightBoosts());
             }
             case "labels" -> {
-                list.add("Labels: ->");
+                list.add(language.labels());
                 list.addAll(manager.listLabelWeightBoosts());
             }
         }

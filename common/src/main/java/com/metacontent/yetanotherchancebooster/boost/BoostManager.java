@@ -57,6 +57,14 @@ public class BoostManager {
         return boost.isEnded();
     }
 
+    private void tickAndCheckBoost(ShinyBoost boost) {
+        boost.tick();
+        if (boost.isActive() && boost.isEnded()) {
+            boost.setActive(false);
+            endedBoosts.add(boost);
+        }
+    }
+
     public boolean isSaveNeeded() {
         return shouldSave;
     }
@@ -89,6 +97,7 @@ public class BoostManager {
 
     public void addShinyBoost(float amplifier, long duration) {
         shinyBoost.update(amplifier, duration);
+        shinyBoost.setActive(true);
         shouldSave = true;
     }
 
