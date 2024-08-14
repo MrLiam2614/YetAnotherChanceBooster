@@ -15,13 +15,12 @@ public class ShinyBooster extends SpawningBooster {
     @Override
     public void affectAction(@NotNull SpawnAction<?> spawnAction) {
         if (spawnAction instanceof PokemonSpawnAction pokemonSpawnAction) {
-            if (Boolean.TRUE.equals(pokemonSpawnAction.getProps().getShiny())) return;
-            float amplifier = BoostManagerData.getOrCreate(player).getManager().getShinyAmplifier();
-            int shinyRate = (int) Cobblemon.config.getShinyRate();
-            int roll = player.getRandom().nextInt(shinyRate);
-            boolean shiny = roll < amplifier;
-
-            pokemonSpawnAction.getProps().setShiny(shiny);
+            pokemonSpawnAction.getProps().setShiny(
+                player.getRandom().nextFloat() < (
+                    BoostManagerData.getOrCreate(player).getManager().getShinyAmplifier() /
+                        Cobblemon.config.getShinyRate()
+                )
+            );
         }
     }
 }
