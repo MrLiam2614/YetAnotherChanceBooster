@@ -3,6 +3,7 @@ package com.metacontent.yetanotherchancebooster.boost;
 public abstract class Boost {
     private float amplifier;
     private long ticksRemain;
+    private boolean finite;
 
     public Boost(float amplifier, long duration) {
         this.amplifier = amplifier;
@@ -16,7 +17,7 @@ public abstract class Boost {
     }
 
     public boolean isEnded() {
-        return ticksRemain <= 0;
+        return ticksRemain <= 0 && finite;
     }
 
     public void setTicksRemain(long ticksRemain) {
@@ -37,6 +38,14 @@ public abstract class Boost {
 
     public void setAmplifier(float amplifier) {
         this.amplifier = amplifier;
+    }
+
+    public boolean isFinite() {
+        return finite;
+    }
+
+    public void setFinite(boolean finite) {
+        this.finite = finite;
     }
 
     public void update(float amplifier, long duration) {
