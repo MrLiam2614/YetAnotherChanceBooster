@@ -9,6 +9,8 @@ import java.io.FileReader;
 import java.io.PrintWriter;
 
 public record LanguageConfig(
+    String prefix,
+    String yourBooster,
     String boostEndedMessage,
     String boostStartedMessage,
     String shiny,
@@ -18,8 +20,8 @@ public record LanguageConfig(
     public static final String PATH = "config/yetanotherchancebooster/language.json";
 
     private LanguageConfig() {
-        this("%s has ended", "%s with amplifier %.2f has started and will last for %s (source: %s)",
-                "Shiny ->", "Species ->", "Labels ->");
+        this("&2&lEBL&cpoke spawn &eBooster §b» ","&eI tuoi boosters" , "&e%s &cè finito", "&e%s &bx %.2f &aè iniziato e durerà&c %s",
+                "&b&lSHINY", "&c&lPOKEMON", "&6&lLABEL");
     }
 
     public static LanguageConfig init() {

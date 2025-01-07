@@ -16,11 +16,11 @@ public class SpeciesWeightBoost extends Boost {
 
     @Override
     public String toString() {
-        return "species: " + species + " | amplifier: " + getAmplifier() + " | duration: " + getTicksRemain();
+        return " &ePokemon: &b" + species + "\n  &eMoltiplicatore: &b" + getAmplifier() + "\n   &eDurata: &b" + tickToTimeString();
     }
 
     @Override
     public String info() {
-        return "Species weight boost (" + species + ")";
+        return "&eBoost moltiplicatore pokemon &b" + species + "&e";
     }
 }

@@ -12,6 +12,7 @@ import com.metacontent.yetanotherchancebooster.influence.LabelWeightBooster;
 import com.metacontent.yetanotherchancebooster.influence.ShinyBooster;
 import com.metacontent.yetanotherchancebooster.influence.SpeciesWeightBooster;
 import com.metacontent.yetanotherchancebooster.store.BoostManagerData;
+import it.eblcraft.eblpokespawnbooster.Messages;
 import kotlin.Unit;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
@@ -36,7 +37,7 @@ public final class YetAnotherChanceBooster {
         Events.BOOST_ENDED.subscribe(Priority.NORMAL, event -> {
             ServerPlayerEntity player = event.player();
             Boost boost = event.boost();
-            player.sendMessage(Text.literal(String.format(LANGUAGE.boostEndedMessage(), boost.info())));
+            Messages.sendBeautyMessage(String.format(LANGUAGE.prefix() + LANGUAGE.boostEndedMessage(), boost.info()), player);
             return Unit.INSTANCE;
         });
         Events.BOOST_STARTED.subscribe(Priority.NORMAL, Events.BOOST_STARTED_EVENT_HANDLER::handle);

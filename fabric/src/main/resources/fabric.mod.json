@@ -16,10 +16,10 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "com.metacontent.yetanotherchancebooster.fabric.YetAnotherChangeBoosterFabric"
+      "it.eblcraft.eblpokespawnbooster.EBLPokeSpawnBooster"
     ],
     "client": [
-      "com.metacontent.yetanotherchancebooster.fabric.client.YetAnotherChangeBoosterFabricClient"
+      "it.eblcraft.eblpokespawnbooster.client.EBLPokeSpawnBoosterClient"
     ]
   },
   "mixins": [

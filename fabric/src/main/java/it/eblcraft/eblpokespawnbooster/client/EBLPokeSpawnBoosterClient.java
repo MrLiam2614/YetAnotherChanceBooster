@@ -1,8 +1,8 @@
-package com.metacontent.yetanotherchancebooster.fabric.client;
+package it.eblcraft.eblpokespawnbooster.client;
 
 import net.fabricmc.api.ClientModInitializer;
 
-public final class YetAnotherChangeBoosterFabricClient implements ClientModInitializer {
+public class EBLPokeSpawnBoosterClient  implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         // This entrypoint is suitable for setting up client-specific logic, such as rendering.

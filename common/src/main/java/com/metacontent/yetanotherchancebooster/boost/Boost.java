@@ -16,6 +16,14 @@ public abstract class Boost {
         }
     }
 
+    public String tickToTimeString() {
+        long seconds = getTicksRemain() / 20;
+        long hours = seconds / 3600;
+        long minutes = seconds / 60 % 60;
+        seconds %= 60;
+        return String.format("%02d:%02d:%02d", hours, minutes, seconds);
+    }
+
     public boolean isEnded() {
         return ticksRemain <= 0 && finite;
     }

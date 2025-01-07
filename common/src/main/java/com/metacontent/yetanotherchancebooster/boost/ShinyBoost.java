@@ -9,12 +9,12 @@ public class ShinyBoost extends Boost {
 
     @Override
     public String toString() {
-        return "amplifier: " + getAmplifier() + " | duration: " + getTicksRemain();
+        return " &eMoltiplicatore: &b" + getAmplifier() + "\n   &eDurata: &b" + tickToTimeString();
     }
 
     @Override
     public String info() {
-        return "Shiny boost";
+        return "&eBoost Shiny";
     }
 
     public boolean isActive() {

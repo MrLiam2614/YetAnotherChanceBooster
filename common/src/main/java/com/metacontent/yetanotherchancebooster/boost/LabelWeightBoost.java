@@ -18,11 +18,12 @@ public class LabelWeightBoost extends Boost {
 
     @Override
     public String toString() {
-        return "labels: " + labels + " | amplifier: " + getAmplifier() + " | duration: " + getTicksRemain();
+        return " &eLabel: &b" + labels + "\n  &eMoltiplicatore: &b" + getAmplifier() + "\n   &eDurata: &b" + tickToTimeString();
     }
 
     @Override
     public String info() {
-        return "Label weight boost " + labels.toString().replace("[", "(").replace("]", ")");
+        return "&eBoost moltiplicatore label &b" +
+                labels.toString().replace("[", "(").replace("]", ")" + "&e");
     }
 }

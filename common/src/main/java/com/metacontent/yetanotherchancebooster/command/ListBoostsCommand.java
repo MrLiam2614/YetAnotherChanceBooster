@@ -8,6 +8,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import it.eblcraft.eblpokespawnbooster.Messages;
 import net.minecraft.command.CommandSource;
 import net.minecraft.command.argument.EntityArgumentType;
 import net.minecraft.server.command.CommandManager;
@@ -52,8 +53,8 @@ public class ListBoostsCommand implements Command {
 
         // i mean... it could be worse
         LanguageConfig language = YetAnotherChanceBooster.LANGUAGE;
+        list.add(language.prefix() + " " + language.yourBooster());
         switch (type) {
-            default -> {}
             case "all" -> {
                 list.add(language.shiny());
                 list.add(manager.getShinyBoostString());
@@ -74,9 +75,15 @@ public class ListBoostsCommand implements Command {
                 list.add(language.labels());
                 list.addAll(manager.listLabelWeightBoosts());
             }
+            default -> {
+                list.add("all");
+                list.add("shiny");
+                list.add("species");
+                list.add("labels");
+            }
         }
 
-        list.forEach(string -> source.sendMessage(Text.literal(string)));
+        list.forEach(string -> Messages.sendBeautyMessage(string, source));
 
         return 1;
     }
