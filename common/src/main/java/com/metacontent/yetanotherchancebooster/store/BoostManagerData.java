@@ -1,8 +1,9 @@
 package com.metacontent.yetanotherchancebooster.store;
 
 import com.cobblemon.mod.common.Cobblemon;
-import com.cobblemon.mod.common.api.storage.player.PlayerData;
+import com.cobblemon.mod.common.api.storage.player.GeneralPlayerData;
 import com.cobblemon.mod.common.api.storage.player.PlayerDataExtension;
+import com.cobblemon.mod.common.api.storage.player.PlayerInstancedDataStoreTypes;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
@@ -18,12 +19,12 @@ public class BoostManagerData implements PlayerDataExtension {
     private BoostManager manager = new BoostManager();
 
     public static BoostManagerData getOrCreate(ServerPlayerEntity player) {
-        PlayerData data = Cobblemon.playerData.get(player);
+        GeneralPlayerData data = Cobblemon.playerDataManager.getGenericData(player);
         BoostManagerData boostManagerData = (BoostManagerData) data.getExtraData().get(NAME);
         if (boostManagerData == null) {
             boostManagerData = new BoostManagerData();
             data.getExtraData().put(NAME, boostManagerData);
-            Cobblemon.playerData.saveSingle(data);
+            Cobblemon.playerDataManager.saveSingle(data, PlayerInstancedDataStoreTypes.INSTANCE.getGENERAL());
         }
         return boostManagerData;
     }

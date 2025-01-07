@@ -32,7 +32,7 @@ public class ShinyBoostCommand extends BoostCommand {
 
         BoostManager manager = BoostManagerData.getOrCreate(player).getManager();
         manager.addShinyBoost(amplifier, duration);
-        Events.BOOST_STARTED.emit(new BoostStartedEvent(player, manager.getShinyBoost(), source.getEntityName()));
+        Events.BOOST_STARTED.emit(new BoostStartedEvent(player, manager.getShinyBoost(), source.getName().getString()));
 
         return 1;
     }

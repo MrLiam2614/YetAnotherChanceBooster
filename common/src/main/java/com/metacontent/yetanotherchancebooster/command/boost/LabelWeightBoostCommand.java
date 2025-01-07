@@ -40,7 +40,7 @@ public class LabelWeightBoostCommand extends BoostCommand {
 
         LabelWeightBoost boost = new LabelWeightBoost(amplifier, duration, labels);
         BoostManagerData.getOrCreate(player).getManager().addBoost(boost);
-        Events.BOOST_STARTED.emit(new BoostStartedEvent(player, boost, source.getEntityName()));
+        Events.BOOST_STARTED.emit(new BoostStartedEvent(player, boost, source.getName().getString()));
 
         return 1;
     }
